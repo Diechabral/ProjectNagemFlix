@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Filme from "../../components/Filme";
 
 const Home = () => {
@@ -13,6 +13,10 @@ const Home = () => {
         setFilmes([filme, ...filmes])
     };
 
+    useEffect(() => {
+        console.log('Filmes mudou')
+    }, []
+    )
 
     return (
         <div className="container">
@@ -44,10 +48,10 @@ const Home = () => {
                         }}
                             className="form-control"
                         >
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <option>Aventura</option>
+                            <option>Ação</option>
+                            <option>Suspense</option>
+                            <option>Comedia</option>
                         </select>
                     </div>
                     <div className="col-4">
@@ -66,14 +70,14 @@ const Home = () => {
                     <br />
                 </div>
                 <br />
-                <button onclick={cadastrar}
+                <button onClick={cadastrar}
                     className="btn btn-success btn-lg btn-block"
                 >
                     Cadastrar
                 </button>
             </div>
             <br />
-            <table class="table table-striped">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Nome </th>
