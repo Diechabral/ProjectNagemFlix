@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch, Link, } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, } from "react-router-dom";
 import Catalogo from './pages/catalogo'
 import Login from './pages/login.js';
 import Sobre from './pages/sobre.js';
@@ -16,11 +16,11 @@ function App() {
                     <Nav.Link as={Link} to="/catalogo">Catálogo</Nav.Link>
                     <Nav.Link as={Link} to="/sobre">Sobre</Nav.Link>
                 </Nav>
-                <Switch>
-                    <Route path="/" elemenet={<Login />}></Route>
-                    <Route path="/catalogo" elemenet={<Catalogo />}></Route>
-                    <Route path="/sobre.js" elemenet={<Sobre />}></Route>
-                </Switch>
+                <Routes>
+                    <Route path="/" element={<Login />}></Route>
+                    <Route path="/catalogo" element={<Catalogo />}></Route>
+                    <Route path="/sobre.js" element={<Sobre />}></Route>
+                </Routes>
             </Router>
 
         </div>
