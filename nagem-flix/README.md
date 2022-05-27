@@ -1,9 +1,9 @@
 # NagemFlix
 
-Esse projeto com como caracterista:
-React, React Router Dom
-Estilização ultilizando BootStrap
-Axios Json
+Esse projeto com como caracterista:<br>
+React, React Router Dom<br>
+Estilização ultilizando BootStrap<br>
+Axios Json<br>
 
 ## Instruções para rodar
 
