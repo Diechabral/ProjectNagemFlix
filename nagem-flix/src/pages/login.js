@@ -4,7 +4,6 @@ const Login = () => {
     return (
         <div className="container-fluid">
             <header className="row">
-                <img src={require('../../assets/20210830151858.png')}/>
             </header>
             <div id="caixa_login" className="col-4 offset-4"></div>
             <h1 className="text=white">Entrar</h1>

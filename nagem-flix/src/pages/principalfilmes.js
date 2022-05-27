@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Filme from "../../components/Filme";
-import api from "../../api"
+import Filme from "../components/Filme";
+import api from "../api"
 
-const Home = () => {
+const Catalogo = () => {
     const [filmes, setFilmes] = useState([]);
     const [filme, setFilme] = useState({
         nome: '',
@@ -98,4 +98,4 @@ const Home = () => {
 
     )
 }
-export default Home
+export default Catalogo
