@@ -1,23 +1,41 @@
 import React, { useState, useEffect } from "react";
-import Filme from "../components/Filme";
 import api from "../api"
+
+import EditarFilme from "../components/Filme/editar";
 
 const Catalogo = () => {
     const [filmes, setFilmes] = useState([]);
-    const [filme, setFilme] = useState({
-        nome: '',
-        ano: 0,
-        categoria: null
-    });
+    const [filme, setFilme] = useState({});
+    const [showModal, setShowModal] = useState(false);
 
-    const cadastrar = () => {
-        setFilmes([filme, ...filmes])
-    };
-
-    useEffect(() => {
+    const carregaFilmes = () => {
         api.get('movies')
             .then((response) => setFilmes(response.data))
             .catch((err) => console.error(err))
+    }
+
+    const cadastrar = () => {
+        setFilmes([filme, ...filmes])
+
+    };
+
+    const carregarEditarFilme = (id) => {
+        setFilme(filmes.find(filme => filme.id === id));
+        setShowModal(true);
+    }
+
+    const removerFilme = (id) => {
+        api.delete(`movies/${id}`)
+            .then((response) => carregaFilmes())
+            .catch((err) => console.error(err))
+    }
+
+    const closeModal = () => {
+        setShowModal(false);
+    }
+
+    useEffect(() => {
+        carregaFilmes()
     }, []
     )
 
@@ -40,22 +58,6 @@ const Catalogo = () => {
                                     nome: e.target.value
                                 })
                             }} />
-                    </div>
-                    <div className="col-4">
-                        <label>Categoria</label>
-                        <select onChange={(e) => {
-                            setFilme({
-                                ...filme,
-                                categoria: e.target.value,
-                            })
-                        }}
-                            className="form-control"
-                        >
-                            <option>Aventura</option>
-                            <option>Ação</option>
-                            <option>Suspense</option>
-                            <option>Comedia</option>
-                        </select>
                     </div>
                     <div className="col-4">
                         <label>Ano</label>
@@ -84,18 +86,26 @@ const Catalogo = () => {
                 <thead>
                     <tr>
                         <th scope="col">Nome </th>
-                        <th scope="col">Categoria</th>
                         <th scope="col">Ano</th>
                         <th scope="col" className="text-right"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {filmes.map((filme, key) => (<Filme key={key} filme={filme} />))}
+                    {filmes.map((filme, key) => (
+                        <tr key={key}>
+                            <td>{filme.title}</td>
+                            <td>{filme.release_date}</td>
+                            <td className="text-right">
+                                <button className="btn btn-info me-2" onClick={() => carregarEditarFilme(filme.id)}>Editar</button>
+                                <button className="btn btn-danger" onClick={() => removerFilme(filme.id)}>Excluir</button>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
 
+            <EditarFilme showModal={showModal} handleClose={closeModal} filme={filme} atualizaLista={carregaFilmes} />
         </div >
-
     )
 }
 export default Catalogo
