@@ -7,9 +7,9 @@ const Filme = ({ filme }) => {
     };
     return (
         <tr>
-            <td>{filme.nome}</td>
-            <td>{filme.categoria}</td>
-            <td>{filme.ano}</td>
+            <td>{filme.title}</td>
+            <td>{filme.vote_count}</td>
+            <td>{filme.release_date}</td>
             <td className="text-right">
                 <button className="btn btn-info " onClick={mostraNome}>Informações</button>{' '}
                 <button className="btn btn-danger">Excluir</button>

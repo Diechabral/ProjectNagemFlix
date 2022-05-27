@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import "./pages/Login/style.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Login />
+    <Home />
 );
 
 

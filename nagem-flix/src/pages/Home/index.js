@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Filme from "../../components/Filme";
+import api from "../../api"
 
 const Home = () => {
     const [filmes, setFilmes] = useState([]);
@@ -14,7 +15,9 @@ const Home = () => {
     };
 
     useEffect(() => {
-        console.log('Filmes mudou')
+        api.get('movies')
+            .then((response) => setFilmes(response.data))
+            .catch((err) => console.error(err))
     }, []
     )
 
@@ -87,7 +90,7 @@ const Home = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {filmes.map(filme => (<Filme filme={filme} />))}
+                    {filmes.map((filme, key) => (<Filme key={key} filme={filme} />))}
                 </tbody>
             </table>
 
